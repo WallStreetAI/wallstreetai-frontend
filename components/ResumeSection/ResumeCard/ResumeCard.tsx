@@ -25,7 +25,7 @@ export const ResumeCard = () => {
   const [loading, setLoading] = useState(false);
 
   const uploadFile = () => {
-    console.log("this is inputRef",inputRef);
+    console.log('this is inputRef', inputRef);
     if (inputRef.current) {
       inputRef.current.click();
     }
@@ -33,80 +33,79 @@ export const ResumeCard = () => {
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoading(true);
-    console.log(e.target.files && e.target.files.length > 0)
+    console.log(e.target.files && e.target.files.length > 0);
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      console.log("this is file",file);
+      console.log('this is file', file);
       const data = new FormData();
       data.append('file', file);
       data.append('userId', userId);
-      console.log("this is data",data);
+      console.log('this is data', data);
       try {
-        if(file && userId) {
-          console.log("this is file",file);
-          console.log("this is userId",userId);
+        if (file && userId) {
+          console.log('this is file', file);
+          console.log('this is userId', userId);
           const response = await fetch('/api/resume/upload', {
             method: 'POST',
-            body: data
-          })
+            body: data,
+          });
 
           const dataResponse = await response.json();
 
-          console.log("this is dataResponse",dataResponse);
+          console.log('this is dataResponse', dataResponse);
 
-        //   if (dataResponse){
-        //       const { resumeId, resumeFileId, userId, ...otherResumeData } =dataResponse;
-        //       // update resumes
-        //       const secure_url = dataResponse.awsUrl
-        //       if (
-        //         resumes.filter((resume) => resume.id === resumeId).length === 0
-        //       ) {
-        //         updateResumes([
-        //           ...resumes,
-        //           { id: resumeId, resumeFileId, ...otherResumeData },
-        //         ]);
-        //       } else {
-        //         const updatedResumes = resumes.map((resume) => {
-        //           if (resume.id === resumeId) {
-        //             return { id: resumeId, resumeFileId, ...otherResumeData };
-        //           }
-        //           return resume;
-        //         });
-        //         updateResumes(updatedResumes);
-        //       }
-        //       // update resumeFiles
-        //       if (
-        //         resumeFiles.filter((file) => file.id === resumeFileId)
-        //           .length === 0
-        //       ) {
-        //         updateResumeFiles([
-        //           ...resumeFiles,
-        //           {
-        //             id: resumeFileId,
-        //             file: secure_url,
-        //             fileName: file.name,
-        //             fileType: file.type,
-        //           },
-        //         ]);
-        //       } else {
-        //         const updatedResumeFiles = resumeFiles.map((resumeFile) => {
-        //           if (resumeFile.id === resumeFileId) {
-        //             return {
-        //               id: resumeFileId,
-        //               file: secure_url,
-        //               fileName: file.name,
-        //               fileType: file.type,
-        //             };
-        //           }
-        //           return resumeFile;
-        //         });
-        //         updateResumeFiles(updatedResumeFiles);
-        //       }
-        //       toast.success('Resume uploaded successfully');
-        //     }
-        //   }
-        // router.push('/resumes/form'); 
-
+          //   if (dataResponse){
+          //       const { resumeId, resumeFileId, userId, ...otherResumeData } =dataResponse;
+          //       // update resumes
+          //       const secure_url = dataResponse.awsUrl
+          //       if (
+          //         resumes.filter((resume) => resume.id === resumeId).length === 0
+          //       ) {
+          //         updateResumes([
+          //           ...resumes,
+          //           { id: resumeId, resumeFileId, ...otherResumeData },
+          //         ]);
+          //       } else {
+          //         const updatedResumes = resumes.map((resume) => {
+          //           if (resume.id === resumeId) {
+          //             return { id: resumeId, resumeFileId, ...otherResumeData };
+          //           }
+          //           return resume;
+          //         });
+          //         updateResumes(updatedResumes);
+          //       }
+          //       // update resumeFiles
+          //       if (
+          //         resumeFiles.filter((file) => file.id === resumeFileId)
+          //           .length === 0
+          //       ) {
+          //         updateResumeFiles([
+          //           ...resumeFiles,
+          //           {
+          //             id: resumeFileId,
+          //             file: secure_url,
+          //             fileName: file.name,
+          //             fileType: file.type,
+          //           },
+          //         ]);
+          //       } else {
+          //         const updatedResumeFiles = resumeFiles.map((resumeFile) => {
+          //           if (resumeFile.id === resumeFileId) {
+          //             return {
+          //               id: resumeFileId,
+          //               file: secure_url,
+          //               fileName: file.name,
+          //               fileType: file.type,
+          //             };
+          //           }
+          //           return resumeFile;
+          //         });
+          //         updateResumeFiles(updatedResumeFiles);
+          //       }
+          //       toast.success('Resume uploaded successfully');
+          //     }
+          //   }
+          // router.push('/resumes/form');
         }
       } catch (error) {
         toast.error('Failed to upload resume file');
